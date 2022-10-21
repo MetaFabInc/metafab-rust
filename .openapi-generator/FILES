@@ -20,7 +20,6 @@ docs/CreateCollection200ResponseAllOfContract.md
 docs/CreateCollection200ResponseAllOfContractAllOf.md
 docs/CreateCollectionItemRequest.md
 docs/CreateCollectionItemRequestAttributesInner.md
-docs/CreateCollectionItemRequestAttributesInnerValue.md
 docs/CreateCollectionRequest.md
 docs/CreateContractRequest.md
 docs/CreateCurrency200Response.md
@@ -81,7 +80,6 @@ src/models/create_collection_200_response_all_of_contract.rs
 src/models/create_collection_200_response_all_of_contract_all_of.rs
 src/models/create_collection_item_request.rs
 src/models/create_collection_item_request_attributes_inner.rs
-src/models/create_collection_item_request_attributes_inner_value.rs
 src/models/create_collection_request.rs
 src/models/create_contract_request.rs
 src/models/create_currency_200_response.rs

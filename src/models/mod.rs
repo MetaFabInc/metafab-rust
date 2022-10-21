@@ -32,8 +32,6 @@ pub mod create_collection_item_request;
 pub use self::create_collection_item_request::CreateCollectionItemRequest;
 pub mod create_collection_item_request_attributes_inner;
 pub use self::create_collection_item_request_attributes_inner::CreateCollectionItemRequestAttributesInner;
-pub mod create_collection_item_request_attributes_inner_value;
-pub use self::create_collection_item_request_attributes_inner_value::CreateCollectionItemRequestAttributesInnerValue;
 pub mod create_collection_request;
 pub use self::create_collection_request::CreateCollectionRequest;
 pub mod create_contract_request;

@@ -10,7 +10,10 @@ Method | HTTP request | Description
 [**get_currencies**](CurrenciesApi.md#get_currencies) | **GET** /v1/currencies | Get currencies
 [**get_currency_balance**](CurrenciesApi.md#get_currency_balance) | **GET** /v1/currencies/{currencyId}/balances | Get currency balance
 [**get_currency_fees**](CurrenciesApi.md#get_currency_fees) | **GET** /v1/currencies/{currencyId}/fees | Get currency fees
+[**get_currency_role**](CurrenciesApi.md#get_currency_role) | **GET** /v1/currencies/{currencyId}/roles | Get currency role
+[**grant_currency_role**](CurrenciesApi.md#grant_currency_role) | **POST** /v1/currencies/{currencyId}/roles | Grant currency role
 [**mint_currency**](CurrenciesApi.md#mint_currency) | **POST** /v1/currencies/{currencyId}/mints | Mint currency
+[**revoke_currency_role**](CurrenciesApi.md#revoke_currency_role) | **DELETE** /v1/currencies/{currencyId}/roles | Revoke currency role
 [**set_currency_fees**](CurrenciesApi.md#set_currency_fees) | **POST** /v1/currencies/{currencyId}/fees | Set currency fees
 [**transfer_currency**](CurrenciesApi.md#transfer_currency) | **POST** /v1/currencies/{currencyId}/transfers | Transfer currency
 
@@ -206,6 +209,72 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_currency_role
+
+> bool get_currency_role(currency_id, role, address, wallet_id)
+Get currency role
+
+Returns a boolean (true/false) representing if the provided role for this currency has been granted to the provided address or address associated with the provided walletId.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**currency_id** | **String** | Any currency id within the MetaFab ecosystem. | [required] |
+**role** | **String** | A valid MetaFab role or bytes string representing a role, such as `0xc9eb32e43bf5ecbceacf00b32281dfc5d6d700a0db676ea26ccf938a385ac3b7` | [required] |
+**address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+
+### Return type
+
+**bool**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## grant_currency_role
+
+> crate::models::TransactionModel grant_currency_role(currency_id, x_authorization, x_password, grant_currency_role_request)
+Grant currency role
+
+Grants the provided role for the currency to the provided address or address associated with the provided walletId. Granted roles give different types of authority on behalf of the currency for specific players, addresses, or contracts to perform different types of permissioned currency operations.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**currency_id** | **String** | Any currency id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
+**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**grant_currency_role_request** | [**GrantCurrencyRoleRequest**](GrantCurrencyRoleRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TransactionModel**](TransactionModel.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## mint_currency
 
 > crate::models::TransactionModel mint_currency(currency_id, x_authorization, x_password, mint_currency_request)
@@ -222,6 +291,39 @@ Name | Type | Description  | Required | Notes
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
 **x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **mint_currency_request** | [**MintCurrencyRequest**](MintCurrencyRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TransactionModel**](TransactionModel.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## revoke_currency_role
+
+> crate::models::TransactionModel revoke_currency_role(currency_id, x_authorization, x_password, revoke_collection_role_request)
+Revoke currency role
+
+Revokes the provided role for the currency to the provided address or address associated with the provided walletId.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**currency_id** | **String** | Any currency id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
+**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**revoke_collection_role_request** | [**RevokeCollectionRoleRequest**](RevokeCollectionRoleRequest.md) |  | [required] |
 
 ### Return type
 

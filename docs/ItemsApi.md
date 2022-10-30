@@ -17,8 +17,11 @@ Method | HTTP request | Description
 [**get_collection_item_supply**](ItemsApi.md#get_collection_item_supply) | **GET** /v1/collections/{collectionId}/items/{collectionItemId}/supplies | Get collection item supply
 [**get_collection_item_timelock**](ItemsApi.md#get_collection_item_timelock) | **GET** /v1/collections/{collectionId}/items/{collectionItemId}/timelocks | Get collection item timelock
 [**get_collection_items**](ItemsApi.md#get_collection_items) | **GET** /v1/collections/{collectionId}/items | Get collection items
+[**get_collection_role**](ItemsApi.md#get_collection_role) | **GET** /v1/collections/{collectionId}/roles | Get collection role
 [**get_collections**](ItemsApi.md#get_collections) | **GET** /v1/collections | Get collections
+[**grant_collection_role**](ItemsApi.md#grant_collection_role) | **POST** /v1/collections/{collectionId}/roles | Grant collection role
 [**mint_collection_item**](ItemsApi.md#mint_collection_item) | **POST** /v1/collections/{collectionId}/items/{collectionItemId}/mints | Mint collection item
+[**revoke_collection_role**](ItemsApi.md#revoke_collection_role) | **DELETE** /v1/collections/{collectionId}/roles | Revoke collection role
 [**set_collection_approval**](ItemsApi.md#set_collection_approval) | **POST** /v1/collections/{collectionId}/approvals | Set collection approval
 [**set_collection_item_timelock**](ItemsApi.md#set_collection_item_timelock) | **POST** /v1/collections/{collectionId}/items/{collectionItemId}/timelocks | Set collection item timelock
 [**transfer_collection_item**](ItemsApi.md#transfer_collection_item) | **POST** /v1/collections/{collectionId}/items/{collectionItemId}/transfers | Transfer collection item
@@ -162,7 +165,7 @@ No authorization required
 > crate::models::TransactionModel create_collection_item(collection_id, x_authorization, x_password, create_collection_item_request)
 Create collection item
 
-Creates a new item type. Item type creation associates all of the relevant item data to a specific itemId. Such as item name, image, description, attributes, any arbitrary data such as 2D or 3D model resolver URLs, and more. It is recommended, but not required, that you create a new item type through this endpoint before minting any quantity of the related itemId.  Item type data is uploaded to, and resolved through IPFS for decentralized persistence. Any itemId provided will have its existing item type overriden if it already exists.
+Creates a new item type. Item type creation associates all of the relevant item data to a specific itemId. Such as item name, image, description, attributes, any arbitrary data such as 2D or 3D model resolver URLs, and more. It is recommended, but not required, that you create a new item type through this endpoint before minting any quantity of the related itemId.  Any itemId provided will have its existing item type overriden if it already exists.  Item type data is uploaded to, and resolved through IPFS for decentralized persistence.
 
 ### Parameters
 
@@ -192,7 +195,7 @@ No authorization required
 
 ## get_collection_approval
 
-> f32 get_collection_approval(collection_id, operator_address, address, wallet_id)
+> bool get_collection_approval(collection_id, operator_address, address, wallet_id)
 Get collection approval
 
 Returns a boolean (true/false) representing if the provided operatorAddress has approval to transfer and burn items from the current collection owned by the address or address associated with the provided walletId.
@@ -209,7 +212,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**f32**
+**bool**
 
 ### Authorization
 
@@ -418,7 +421,7 @@ No authorization required
 > Vec<serde_json::Value> get_collection_items(collection_id)
 Get collection items
 
-Returns all collection items as an array of metadata objects.
+Returns all collection items as an array of metadata objects.  Please note that ONLY items that have had at least 1 quantity minted will be returned. If you've created an item that has not been minted yet, it will not be returned in the array response.
 
 ### Parameters
 
@@ -430,6 +433,39 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<serde_json::Value>**](serde_json::Value.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_collection_role
+
+> bool get_collection_role(collection_id, role, address, wallet_id)
+Get collection role
+
+Returns a boolean (true/false) representing if the provided role for this collection has been granted to the provided address or address associated with the provided walletId.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**role** | **String** | A valid MetaFab role or bytes string representing a role, such as `0xc9eb32e43bf5ecbceacf00b32281dfc5d6d700a0db676ea26ccf938a385ac3b7` | [required] |
+**address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+
+### Return type
+
+**bool**
 
 ### Authorization
 
@@ -473,6 +509,39 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## grant_collection_role
+
+> crate::models::TransactionModel grant_collection_role(collection_id, x_authorization, x_password, grant_collection_role_request)
+Grant collection role
+
+Grants the provided role for the collection to the provided address or address associated with the provided walletId. Granted roles give different types of authority on behalf of the collection for specific players, addresses, or contracts to perform different types of permissioned collection operations.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
+**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**grant_collection_role_request** | [**GrantCollectionRoleRequest**](GrantCollectionRoleRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TransactionModel**](TransactionModel.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## mint_collection_item
 
 > crate::models::TransactionModel mint_collection_item(collection_id, collection_item_id, x_authorization, x_password, mint_collection_item_request)
@@ -490,6 +559,39 @@ Name | Type | Description  | Required | Notes
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
 **x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **mint_collection_item_request** | [**MintCollectionItemRequest**](MintCollectionItemRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TransactionModel**](TransactionModel.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## revoke_collection_role
+
+> crate::models::TransactionModel revoke_collection_role(collection_id, x_authorization, x_password, revoke_collection_role_request)
+Revoke collection role
+
+Revokes the provided role for the collection to the provided address or address associated with the provided walletId.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
+**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**revoke_collection_role_request** | [**RevokeCollectionRoleRequest**](RevokeCollectionRoleRequest.md) |  | [required] |
 
 ### Return type
 

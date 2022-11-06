@@ -228,7 +228,7 @@ No authorization required
 
 ## get_collection_item
 
-> Vec<serde_json::Value> get_collection_item(collection_id, collection_item_id)
+> serde_json::Value get_collection_item(collection_id, collection_item_id)
 Get collection item
 
 Returns a metadata object for the provided collectionItemId.
@@ -243,7 +243,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<serde_json::Value>**](serde_json::Value.md)
+[**serde_json::Value**](serde_json::Value.md)
 
 ### Authorization
 

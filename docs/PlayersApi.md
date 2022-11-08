@@ -4,8 +4,10 @@ All URIs are relative to *https://api.trymetafab.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**auth_player**](PlayersApi.md#auth_player) | **GET** /v1/players | Authenticate player
+[**auth_player**](PlayersApi.md#auth_player) | **GET** /v1/players/auth | Authenticate player
 [**create_player**](PlayersApi.md#create_player) | **POST** /v1/players | Create player
+[**get_player**](PlayersApi.md#get_player) | **GET** /v1/players/{playerId} | Get player
+[**get_players**](PlayersApi.md#get_players) | **GET** /v1/players | Get players
 [**update_player**](PlayersApi.md#update_player) | **PATCH** /v1/players/{playerId} | Update player
 
 
@@ -66,6 +68,66 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_player
+
+> crate::models::PublicPlayer get_player(player_id)
+Get player
+
+Returns a player object for the provided player id.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+
+### Return type
+
+[**crate::models::PublicPlayer**](PublicPlayer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_players
+
+> Vec<crate::models::PublicPlayer> get_players(x_authorization)
+Get players
+
+Returns all players for the authenticated game as an array of player objects.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
+
+### Return type
+
+[**Vec<crate::models::PublicPlayer>**](PublicPlayer.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

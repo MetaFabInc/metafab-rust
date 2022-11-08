@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct ContractModel {
+pub struct PublicPlayer {
     /// This field has not had a description added.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
@@ -20,36 +20,31 @@ pub struct ContractModel {
     #[serde(rename = "gameId", skip_serializing_if = "Option::is_none")]
     pub game_id: Option<String>,
     /// This field has not had a description added.
-    #[serde(rename = "chain", skip_serializing_if = "Option::is_none")]
-    pub chain: Option<String>,
+    #[serde(rename = "walletId", skip_serializing_if = "Option::is_none")]
+    pub wallet_id: Option<String>,
     /// This field has not had a description added.
-    #[serde(rename = "abi", skip_serializing_if = "Option::is_none")]
-    pub abi: Option<serde_json::Value>,
-    /// This field has not had a description added.
-    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<String>,
-    /// This field has not had a description added.
-    #[serde(rename = "address", skip_serializing_if = "Option::is_none")]
-    pub address: Option<String>,
+    #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
+    pub username: Option<String>,
     /// This field has not had a description added.
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<String>,
     /// This field has not had a description added.
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
+    #[serde(rename = "wallet", skip_serializing_if = "Option::is_none")]
+    pub wallet: Option<Box<crate::models::PublicPlayerWallet>>,
 }
 
-impl ContractModel {
-    pub fn new() -> ContractModel {
-        ContractModel {
+impl PublicPlayer {
+    pub fn new() -> PublicPlayer {
+        PublicPlayer {
             id: None,
             game_id: None,
-            chain: None,
-            abi: None,
-            r#type: None,
-            address: None,
+            wallet_id: None,
+            username: None,
             updated_at: None,
             created_at: None,
+            wallet: None,
         }
     }
 }

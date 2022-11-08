@@ -12,25 +12,16 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct ContractModel {
+pub struct PublicGame {
     /// This field has not had a description added.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
     /// This field has not had a description added.
-    #[serde(rename = "gameId", skip_serializing_if = "Option::is_none")]
-    pub game_id: Option<String>,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     /// This field has not had a description added.
-    #[serde(rename = "chain", skip_serializing_if = "Option::is_none")]
-    pub chain: Option<String>,
-    /// This field has not had a description added.
-    #[serde(rename = "abi", skip_serializing_if = "Option::is_none")]
-    pub abi: Option<serde_json::Value>,
-    /// This field has not had a description added.
-    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<String>,
-    /// This field has not had a description added.
-    #[serde(rename = "address", skip_serializing_if = "Option::is_none")]
-    pub address: Option<String>,
+    #[serde(rename = "publishedKey", skip_serializing_if = "Option::is_none")]
+    pub published_key: Option<String>,
     /// This field has not had a description added.
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<String>,
@@ -39,15 +30,12 @@ pub struct ContractModel {
     pub created_at: Option<String>,
 }
 
-impl ContractModel {
-    pub fn new() -> ContractModel {
-        ContractModel {
+impl PublicGame {
+    pub fn new() -> PublicGame {
+        PublicGame {
             id: None,
-            game_id: None,
-            chain: None,
-            abi: None,
-            r#type: None,
-            address: None,
+            name: None,
+            published_key: None,
             updated_at: None,
             created_at: None,
         }

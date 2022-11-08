@@ -4,8 +4,9 @@ All URIs are relative to *https://api.trymetafab.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**auth_game**](GamesApi.md#auth_game) | **GET** /v1/games | Authenticate game
+[**auth_game**](GamesApi.md#auth_game) | **GET** /v1/games/auth | Authenticate game
 [**create_game**](GamesApi.md#create_game) | **POST** /v1/games | Create game
+[**get_game**](GamesApi.md#get_game) | **GET** /v1/games/{gameId} | Get game
 [**update_game**](GamesApi.md#update_game) | **PATCH** /v1/games/{gameId} | Update game
 
 
@@ -62,6 +63,36 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_game
+
+> crate::models::PublicGame get_game(game_id)
+Get game
+
+Returns a game object for the provided game id.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**game_id** | **String** | Any game id within the MetaFab ecosystem. | [required] |
+
+### Return type
+
+[**crate::models::PublicGame**](PublicGame.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

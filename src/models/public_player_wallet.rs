@@ -12,7 +12,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct WalletModel {
+pub struct PublicPlayerWallet {
     /// This field has not had a description added.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
@@ -21,9 +21,9 @@ pub struct WalletModel {
     pub address: Option<String>,
 }
 
-impl WalletModel {
-    pub fn new() -> WalletModel {
-        WalletModel {
+impl PublicPlayerWallet {
+    pub fn new() -> PublicPlayerWallet {
+        PublicPlayerWallet {
             id: None,
             address: None,
         }

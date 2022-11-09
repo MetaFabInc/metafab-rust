@@ -41,6 +41,7 @@ docs/GetCurrencies200ResponseInner.md
 docs/GetCurrencies200ResponseInnerAllOf.md
 docs/GetCurrencyFees200Response.md
 docs/GetExchanges200ResponseInner.md
+docs/GetPlayerData200Response.md
 docs/GrantCollectionRoleRequest.md
 docs/GrantCurrencyRoleRequest.md
 docs/ItemsApi.md
@@ -56,6 +57,7 @@ docs/SetCollectionApprovalRequest.md
 docs/SetCollectionItemTimelockRequest.md
 docs/SetCurrencyFeesRequest.md
 docs/SetExchangeOfferRequest.md
+docs/SetPlayerDataRequest.md
 docs/TransactionModel.md
 docs/TransactionsApi.md
 docs/TransferCollectionItemRequest.md
@@ -113,6 +115,7 @@ src/models/get_currencies_200_response_inner.rs
 src/models/get_currencies_200_response_inner_all_of.rs
 src/models/get_currency_fees_200_response.rs
 src/models/get_exchanges_200_response_inner.rs
+src/models/get_player_data_200_response.rs
 src/models/grant_collection_role_request.rs
 src/models/grant_currency_role_request.rs
 src/models/mint_collection_item_request.rs
@@ -127,6 +130,7 @@ src/models/set_collection_approval_request.rs
 src/models/set_collection_item_timelock_request.rs
 src/models/set_currency_fees_request.rs
 src/models/set_exchange_offer_request.rs
+src/models/set_player_data_request.rs
 src/models/transaction_model.rs
 src/models/transfer_collection_item_request.rs
 src/models/transfer_currency_request.rs

@@ -7,7 +7,9 @@ Method | HTTP request | Description
 [**auth_player**](PlayersApi.md#auth_player) | **GET** /v1/players/auth | Authenticate player
 [**create_player**](PlayersApi.md#create_player) | **POST** /v1/players | Create player
 [**get_player**](PlayersApi.md#get_player) | **GET** /v1/players/{playerId} | Get player
+[**get_player_data**](PlayersApi.md#get_player_data) | **GET** /v1/players/{playerId}/data | Get player data
 [**get_players**](PlayersApi.md#get_players) | **GET** /v1/players | Get players
+[**set_player_data**](PlayersApi.md#set_player_data) | **POST** /v1/players/{playerId}/data | Set player data
 [**update_player**](PlayersApi.md#update_player) | **PATCH** /v1/players/{playerId} | Update player
 
 
@@ -103,6 +105,36 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_player_data
+
+> crate::models::GetPlayerData200Response get_player_data(player_id)
+Get player data
+
+Returns the latest public and protected data as an object for the provided playerId.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+
+### Return type
+
+[**crate::models::GetPlayerData200Response**](getPlayerData_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_players
 
 > Vec<crate::models::PublicPlayer> get_players(x_authorization)
@@ -128,6 +160,38 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## set_player_data
+
+> crate::models::GetPlayerData200Response set_player_data(player_id, x_authorization, set_player_data_request)
+Set player data
+
+Creates or updates public and/or protected data for the provided playerId. Data updates are performed using deep merging. This means that when you update any top level or nested properties specific to player public or protected data, you only need to include the properties you are making changes to. Any existing properties not included in request body arguments will be retained on the player data object.  Please note, When writing an array type for a player, arrays do not follow the deep merge approach. If you add or remove an item from an array, the entire array must be passed as an argument when updating the related property for player public or protected data.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
+**set_player_data_request** | [**SetPlayerDataRequest**](SetPlayerDataRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::GetPlayerData200Response**](getPlayerData_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -1,6 +1,6 @@
 [package]
 name = "metafab"
-version = "1.2.0"
+version = "1.2.1"
 authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
 

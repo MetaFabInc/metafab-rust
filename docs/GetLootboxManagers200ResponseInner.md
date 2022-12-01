@@ -1,4 +1,4 @@
-# GetExchanges200ResponseInner
+# GetLootboxManagers200ResponseInner
 
 ## Properties
 

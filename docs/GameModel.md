@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **rpcs** | Option<[**serde_json::Value**](.md)> | This field has not had a description added. | [optional]
 **published_key** | Option<**String**> | This field has not had a description added. | [optional]
 **secret_key** | Option<**String**> | This field has not had a description added. | [optional]
+**verified** | Option<**bool**> | This field has not had a description added. | [optional]
 **updated_at** | Option<**String**> | This field has not had a description added. | [optional]
 **created_at** | Option<**String**> | This field has not had a description added. | [optional]
 

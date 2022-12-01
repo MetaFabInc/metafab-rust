@@ -259,7 +259,7 @@ No authorization required
 
 ## get_collection_item_balance
 
-> f32 get_collection_item_balance(collection_id, collection_item_id, address, wallet_id)
+> i32 get_collection_item_balance(collection_id, collection_item_id, address, wallet_id)
 Get collection item balance
 
 Returns the current collection item balance of the provided collectionItemId for the provided wallet address or the wallet address associated with the provided walletId.
@@ -276,7 +276,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**f32**
+**i32**
 
 ### Authorization
 
@@ -292,7 +292,7 @@ No authorization required
 
 ## get_collection_item_balances
 
-> ::std::collections::HashMap<String, f32> get_collection_item_balances(collection_id, address, wallet_id)
+> ::std::collections::HashMap<String, i32> get_collection_item_balances(collection_id, address, wallet_id)
 Get collection item balances
 
 Returns the current collection item balances of all collection items for the provided wallet address or the wallet address associated with the provided walletId.
@@ -308,7 +308,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**::std::collections::HashMap<String, f32>**
+**::std::collections::HashMap<String, i32>**
 
 ### Authorization
 
@@ -324,7 +324,7 @@ No authorization required
 
 ## get_collection_item_supplies
 
-> ::std::collections::HashMap<String, f32> get_collection_item_supplies(collection_id)
+> ::std::collections::HashMap<String, i32> get_collection_item_supplies(collection_id)
 Get collection item supplies
 
 Returns the currency circulating supply of all collection items.
@@ -338,7 +338,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**::std::collections::HashMap<String, f32>**
+**::std::collections::HashMap<String, i32>**
 
 ### Authorization
 
@@ -354,7 +354,7 @@ No authorization required
 
 ## get_collection_item_supply
 
-> f32 get_collection_item_supply(collection_id, collection_item_id, address, wallet_id)
+> i32 get_collection_item_supply(collection_id, collection_item_id, address, wallet_id)
 Get collection item supply
 
 Returns the current circulating supply of the provided collectionItemId.
@@ -371,7 +371,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**f32**
+**i32**
 
 ### Authorization
 
@@ -387,7 +387,7 @@ No authorization required
 
 ## get_collection_item_timelock
 
-> f32 get_collection_item_timelock(collection_id, collection_item_id)
+> i32 get_collection_item_timelock(collection_id, collection_item_id)
 Get collection item timelock
 
 Returns a timestamp (in seconds) for when the provided collectionItemId's transfer timelock expires. A value of 0 means the provided collectionItemId does not have a timelock set. Timelocks prevent items of a specific collectionItemId from being transferred until the set timelock timestamp has been surpassed.
@@ -402,7 +402,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**f32**
+**i32**
 
 ### Authorization
 

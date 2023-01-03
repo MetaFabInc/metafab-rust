@@ -9,6 +9,8 @@ Method | HTTP request | Description
 [**get_player**](PlayersApi.md#get_player) | **GET** /v1/players/{playerId} | Get player
 [**get_player_data**](PlayersApi.md#get_player_data) | **GET** /v1/players/{playerId}/data | Get player data
 [**get_players**](PlayersApi.md#get_players) | **GET** /v1/players | Get players
+[**remove_player_connected_wallet**](PlayersApi.md#remove_player_connected_wallet) | **DELETE** /v1/players/{playerId}/wallets/{playerWalletId} | Remove player connected wallet
+[**set_player_connected_wallet**](PlayersApi.md#set_player_connected_wallet) | **POST** /v1/players/{playerId}/wallets | Set player connected wallet
 [**set_player_data**](PlayersApi.md#set_player_data) | **POST** /v1/players/{playerId}/data | Set player data
 [**update_player**](PlayersApi.md#update_player) | **PATCH** /v1/players/{playerId} | Update player
 
@@ -160,6 +162,70 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## remove_player_connected_wallet
+
+> remove_player_connected_wallet(player_id, player_wallet_id, remove_player_connected_wallet_request)
+Remove player connected wallet
+
+Removes an external wallet from a player account. The player's wallet is reverted to their custodial wallet.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**player_wallet_id** | **String** | Any player wallet id within the MetaFab ecosystem. | [required] |
+**remove_player_connected_wallet_request** | [**RemovePlayerConnectedWalletRequest**](RemovePlayerConnectedWalletRequest.md) |  | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## set_player_connected_wallet
+
+> crate::models::SetPlayerConnectedWallet200Response set_player_connected_wallet(player_id, x_authorization, set_player_connected_wallet_request)
+Set player connected wallet
+
+Sets an external wallet as the wallet for a player account. The set wallet can transact gaslessly with all MetaFab related systems through the same MetaFab API calls as custodial wallets without requiring transaction signing or private keys.  This is done through an internal system MetaFab has created that allows an external connected wallet to delegate transaction signing for a specific game's set of contracts to a player's password protected custodial wallet. This allow the custodial wallet to sign and submit transactions to a specific game's related contracts as if they were signed and submitted by the connected external wallet. This also means that all earned tokens, purchased items and any interactions happen and are recorded on chain as the external connected wallet. No additional logic needs to be writted by developers to support both custodial and external wallets, everything just works.  Finally, this endpoint is meant for advanced users. The majority of developers who want to implement external wallet support for their game can do so without any extra work through our whitelabeled wallet connection feature that implements this endpoint underneath the hood without any required work.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `accessToken` of the authenticating player. | [required] |
+**set_player_connected_wallet_request** | [**SetPlayerConnectedWalletRequest**](SetPlayerConnectedWalletRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::SetPlayerConnectedWallet200Response**](setPlayerConnectedWallet_200_response.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

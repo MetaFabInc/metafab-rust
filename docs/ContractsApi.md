@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**create_contract**](ContractsApi.md#create_contract) | **POST** /v1/contracts | Create custom contract
 [**get_contracts**](ContractsApi.md#get_contracts) | **GET** /v1/contracts | Get contracts
 [**read_contract**](ContractsApi.md#read_contract) | **GET** /v1/contracts/{contractId}/reads | Read contract data
+[**transfer_contract_ownership**](ContractsApi.md#transfer_contract_ownership) | **POST** /v1/contracts/{contractId}/owners | Transfer contract ownership
+[**upgrade_contract_trusted_forwarder**](ContractsApi.md#upgrade_contract_trusted_forwarder) | **POST** /v1/contracts/{contractId}/forwarders | Upgrade contract trusted forwarder
 [**write_contract**](ContractsApi.md#write_contract) | **POST** /v1/contracts/{contractId}/writes | Write contract data
 
 
@@ -99,6 +101,72 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## transfer_contract_ownership
+
+> crate::models::TransactionModel transfer_contract_ownership(contract_id, x_authorization, x_password, transfer_contract_ownership_request)
+Transfer contract ownership
+
+Transfer ownership and control of a MetaFab deployed smart contract to another wallet you control. Transferring control does not disrupt your usage of MetaFab APIs and can be done so without causing any service outages for your game. The new owner wallet will have full control over any relevant item collections and marketplace related pages this contract may be associated with, such as for MetaFab item or NFT contracts.  Your game's custodial wallet will retain a `MANAGER_ROLE` on your contracts, allowing you to still use MetaFab APIs without issue while you retain full contract ownership and the contract's administrator role. If ever you want eject from using the MetaFab APIs but still retain your deployed smart contracts, you can revoke the `MANAGER_ROLE` from your game's custodial wallet address for your contract. We do not lock you into our systems.  Please be certain that the wallet address you transfer ownership to is one you control. Once ownership and admin permissions are transferred, your game's custodial wallet no longer has permission to reassign ownership or administrative priveleges for your contract.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**contract_id** | **String** | Any contract id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
+**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**transfer_contract_ownership_request** | [**TransferContractOwnershipRequest**](TransferContractOwnershipRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TransactionModel**](TransactionModel.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## upgrade_contract_trusted_forwarder
+
+> crate::models::TransactionModel upgrade_contract_trusted_forwarder(contract_id, x_authorization, x_password, upgrade_contract_trusted_forwarder_request)
+Upgrade contract trusted forwarder
+
+In rare circumstances, you may need to upgrade the underlying trusted forwarder contract address attached to your game's contracts. Using this endpoint, you can provide a new trusted forwarder contract address to assign to any of your contracts that implement the `upgradeTrustedForwarder` function.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**contract_id** | **String** | Any contract id within the MetaFab ecosystem. | [required] |
+**x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
+**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**upgrade_contract_trusted_forwarder_request** | [**UpgradeContractTrustedForwarderRequest**](UpgradeContractTrustedForwarderRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::TransactionModel**](TransactionModel.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

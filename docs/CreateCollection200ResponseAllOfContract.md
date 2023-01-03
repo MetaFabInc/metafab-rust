@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **abi** | Option<[**serde_json::Value**](.md)> | This field has not had a description added. | [optional]
 **r#type** | Option<**String**> | This field has not had a description added. | [optional]
 **address** | Option<**String**> | This field has not had a description added. | [optional]
+**forwarder_address** | Option<**String**> | This field has not had a description added. | [optional]
 **updated_at** | Option<**String**> | This field has not had a description added. | [optional]
 **created_at** | Option<**String**> | This field has not had a description added. | [optional]
 **transactions** | Option<[**Vec<crate::models::TransactionModel>**](TransactionModel.md)> |  | [optional]

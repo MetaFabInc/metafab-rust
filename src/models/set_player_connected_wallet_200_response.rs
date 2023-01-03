@@ -12,20 +12,21 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct PublicPlayerWallet {
-    /// This field has not had a description added.
+pub struct SetPlayerConnectedWallet200Response {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
-    /// This field has not had a description added.
     #[serde(rename = "address", skip_serializing_if = "Option::is_none")]
     pub address: Option<String>,
+    #[serde(rename = "transaction", skip_serializing_if = "Option::is_none")]
+    pub transaction: Option<Box<crate::models::TransactionModel>>,
 }
 
-impl PublicPlayerWallet {
-    pub fn new() -> PublicPlayerWallet {
-        PublicPlayerWallet {
+impl SetPlayerConnectedWallet200Response {
+    pub fn new() -> SetPlayerConnectedWallet200Response {
+        SetPlayerConnectedWallet200Response {
             id: None,
             address: None,
+            transaction: None,
         }
     }
 }

@@ -89,7 +89,7 @@ Returns a player object for the provided player id.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**player_id** | **String** | Any player id within the MetaFab platform. | [required] |
 
 ### Return type
 
@@ -119,7 +119,7 @@ Returns the latest public and protected data as an object for the provided playe
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**player_id** | **String** | Any player id within the MetaFab platform. | [required] |
 
 ### Return type
 
@@ -179,8 +179,8 @@ Removes an external wallet from a player account. The player's wallet is reverte
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
-**player_wallet_id** | **String** | Any player wallet id within the MetaFab ecosystem. | [required] |
+**player_id** | **String** | Any player id within the MetaFab platform. | [required] |
+**player_wallet_id** | **String** | Any player wallet id within the MetaFab platform. | [required] |
 **remove_player_connected_wallet_request** | [**RemovePlayerConnectedWalletRequest**](RemovePlayerConnectedWalletRequest.md) |  | [required] |
 
 ### Return type
@@ -211,7 +211,7 @@ Sets an external wallet as the wallet for a player account. The set wallet can t
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**player_id** | **String** | The player id of the authenticating player. | [required] |
 **x_authorization** | **String** | The `accessToken` of the authenticating player. | [required] |
 **set_player_connected_wallet_request** | [**SetPlayerConnectedWalletRequest**](SetPlayerConnectedWalletRequest.md) |  | [required] |
 
@@ -243,7 +243,7 @@ Creates or updates public and/or protected data for the provided playerId. Data 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**player_id** | **String** | Any player id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
 **set_player_data_request** | [**SetPlayerDataRequest**](SetPlayerDataRequest.md) |  | [required] |
 
@@ -265,7 +265,7 @@ No authorization required
 
 ## update_player
 
-> crate::models::PlayerModel update_player(player_id, x_authorization, update_player_request)
+> crate::models::UpdatePlayer200Response update_player(player_id, x_authorization, update_player_request)
 Update player
 
 Update various fields specific to a player. Such as changing its password and resetting its access token.
@@ -275,13 +275,13 @@ Update various fields specific to a player. Such as changing its password and re
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_id** | **String** | Any player id within the MetaFab ecosystem. | [required] |
+**player_id** | **String** | The player id of the authenticating player. | [required] |
 **x_authorization** | **String** | The `accessToken` of the authenticating player. | [required] |
 **update_player_request** | [**UpdatePlayerRequest**](UpdatePlayerRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::PlayerModel**](PlayerModel.md)
+[**crate::models::UpdatePlayer200Response**](updatePlayer_200_response.md)
 
 ### Authorization
 

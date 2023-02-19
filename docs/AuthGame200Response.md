@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **verified** | Option<**bool**> | This field has not had a description added. | [optional]
 **updated_at** | Option<**String**> | This field has not had a description added. | [optional]
 **created_at** | Option<**String**> | This field has not had a description added. | [optional]
+**wallet_decrypt_key** | Option<**String**> | This field has not had a description added. | [optional]
 **wallet** | Option<[**crate::models::WalletModel**](WalletModel.md)> |  | [optional]
 **funding_wallet** | Option<[**crate::models::WalletModel**](WalletModel.md)> |  | [optional]
 

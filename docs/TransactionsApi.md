@@ -20,7 +20,7 @@ Returns an executed transaction object for the provided transactionId. Transacti
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**transaction_id** | **String** | Any transaction id within the MetaFab ecosystem. | [required] |
+**transaction_id** | **String** | Any transaction id within the MetaFab platform. | [required] |
 
 ### Return type
 

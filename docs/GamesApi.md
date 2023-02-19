@@ -80,7 +80,7 @@ Returns a game object for the provided game id.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**game_id** | **String** | Any game id within the MetaFab ecosystem. | [required] |
+**game_id** | **String** | Any game id within the MetaFab platform. | [required] |
 
 ### Return type
 
@@ -100,7 +100,7 @@ No authorization required
 
 ## update_game
 
-> crate::models::GameModel update_game(game_id, x_authorization, update_game_request)
+> crate::models::UpdateGame200Response update_game(game_id, x_authorization, update_game_request)
 Update game
 
 Update various fields specific to a game. Such as changing its password, resetting its published or secret key, or updating its RPCs.
@@ -110,13 +110,13 @@ Update various fields specific to a game. Such as changing its password, resetti
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**game_id** | **String** | Any game id within the MetaFab ecosystem. | [required] |
+**game_id** | **String** | The game id of the authenticating game. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
 **update_game_request** | [**UpdateGameRequest**](UpdateGameRequest.md) |  | [required] |
 
 ### Return type
 
-[**crate::models::GameModel**](GameModel.md)
+[**crate::models::UpdateGame200Response**](updateGame_200_response.md)
 
 ### Authorization
 

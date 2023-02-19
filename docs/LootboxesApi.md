@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## create_lootbox_manager
 
-> crate::models::CreateLootboxManager200Response create_lootbox_manager(x_authorization, x_password, create_lootbox_manager_request)
+> crate::models::CreateLootboxManager200Response create_lootbox_manager(x_authorization, x_wallet_decrypt_key, create_lootbox_manager_request)
 Create lootbox manager
 
 Creates a new game lootbox manager and deploys a lootbox manager contract on behalf of the authenticating game's primary wallet. The deployed lootbox manager contract allows you to create lootbox behavior for existing items. For example, you can define item id(s) from one of your item collections as the requirement(s) to open a \"lootbox\". The required item(s) would be burned from the interacting player's wallet and the player would receive item(s) from a weighted randomized set of possible items the lootbox can contain.
@@ -27,7 +27,7 @@ Creates a new game lootbox manager and deploys a lootbox manager contract on beh
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **create_lootbox_manager_request** | [**CreateLootboxManagerRequest**](CreateLootboxManagerRequest.md) |  | [required] |
 
 ### Return type
@@ -58,8 +58,8 @@ Returns a lootbox manager lootbox object for the provided lootboxManagerLootboxI
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab ecosystem. | [required] |
-**lootbox_manager_lootbox_id** | **String** | Any lootbox manager lootbox id within the MetaFab ecosystem. | [required] |
+**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab platform. | [required] |
+**lootbox_manager_lootbox_id** | **String** | Any lootbox manager lootbox id within the MetaFab platform. | [required] |
 
 ### Return type
 
@@ -89,7 +89,7 @@ Returns all lootbox manager lootboxes as an array of lootbox objects.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab ecosystem. | [required] |
+**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab platform. | [required] |
 
 ### Return type
 
@@ -139,7 +139,7 @@ No authorization required
 
 ## open_lootbox_manager_lootbox
 
-> Vec<crate::models::TransactionModel> open_lootbox_manager_lootbox(lootbox_manager_id, lootbox_manager_lootbox_id, x_authorization, x_password)
+> Vec<crate::models::TransactionModel> open_lootbox_manager_lootbox(lootbox_manager_id, lootbox_manager_lootbox_id, x_authorization, x_wallet_decrypt_key)
 Open lootbox manager lootbox
 
 Opens a lootbox manager lootbox. The required input item(s) are burned from the wallet or player wallet opening the lootbox. The given output item(s) are given to the wallet or player wallet opening the lootbox.
@@ -149,10 +149,10 @@ Opens a lootbox manager lootbox. The required input item(s) are burned from the 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab ecosystem. | [required] |
-**lootbox_manager_lootbox_id** | **String** | Any lootbox manager lootbox id within the MetaFab ecosystem. | [required] |
+**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab platform. | [required] |
+**lootbox_manager_lootbox_id** | **String** | Any lootbox manager lootbox id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 
 ### Return type
 
@@ -172,7 +172,7 @@ No authorization required
 
 ## remove_lootbox_manager_lootbox
 
-> crate::models::TransactionModel remove_lootbox_manager_lootbox(lootbox_manager_id, lootbox_manager_lootbox_id, x_authorization, x_password)
+> crate::models::TransactionModel remove_lootbox_manager_lootbox(lootbox_manager_id, lootbox_manager_lootbox_id, x_authorization, x_wallet_decrypt_key)
 Remove lootbox manager lootbox
 
 Removes the provided lootbox by lootboxId from the provided lootbox manager. Removed lootboxes can no longer be used.
@@ -182,10 +182,10 @@ Removes the provided lootbox by lootboxId from the provided lootbox manager. Rem
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab ecosystem. | [required] |
-**lootbox_manager_lootbox_id** | **String** | Any lootbox manager lootbox id within the MetaFab ecosystem. | [required] |
+**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab platform. | [required] |
+**lootbox_manager_lootbox_id** | **String** | Any lootbox manager lootbox id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 
 ### Return type
 
@@ -205,7 +205,7 @@ No authorization required
 
 ## set_lootbox_manager_lootbox
 
-> crate::models::TransactionModel set_lootbox_manager_lootbox(lootbox_manager_id, x_authorization, x_password, set_lootbox_manager_lootbox_request)
+> crate::models::TransactionModel set_lootbox_manager_lootbox(lootbox_manager_id, x_authorization, x_wallet_decrypt_key, set_lootbox_manager_lootbox_request)
 Set lootbox manager lootbox
 
 Sets a new lootbox manager lootbox or updates an existing one for the provided id. Lootboxes allow item(s) to be burned to receive a random set of possible item(s) based on probability weight.  Lootboxes can require any number of unique types of items and quantities to open a created lootbox type within the system. A common pattern with lootboxes is to create a lootbox item type within an item collection, and require it as the input item type.
@@ -215,9 +215,9 @@ Sets a new lootbox manager lootbox or updates an existing one for the provided i
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab ecosystem. | [required] |
+**lootbox_manager_id** | **String** | Any lootbox manager id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **set_lootbox_manager_lootbox_request** | [**SetLootboxManagerLootboxRequest**](SetLootboxManagerLootboxRequest.md) |  | [required] |
 
 ### Return type

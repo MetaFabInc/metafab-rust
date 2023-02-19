@@ -30,7 +30,7 @@ Method | HTTP request | Description
 
 ## batch_mint_collection_items
 
-> crate::models::TransactionModel batch_mint_collection_items(collection_id, x_authorization, x_password, batch_mint_collection_items_request)
+> crate::models::TransactionModel batch_mint_collection_items(collection_id, x_authorization, x_wallet_decrypt_key, batch_mint_collection_items_request)
 Batch mint collection items
 
 Creates (mints) the provided itemIds of the specified quantities to the provided wallet address or wallet address associated with the provided walletId.
@@ -40,9 +40,9 @@ Creates (mints) the provided itemIds of the specified quantities to the provided
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **batch_mint_collection_items_request** | [**BatchMintCollectionItemsRequest**](BatchMintCollectionItemsRequest.md) |  | [required] |
 
 ### Return type
@@ -63,7 +63,7 @@ No authorization required
 
 ## batch_transfer_collection_items
 
-> crate::models::TransactionModel batch_transfer_collection_items(collection_id, x_authorization, x_password, batch_transfer_collection_items_request)
+> crate::models::TransactionModel batch_transfer_collection_items(collection_id, x_authorization, x_wallet_decrypt_key, batch_transfer_collection_items_request)
 Batch transfer collection items
 
 Transfers one or multiple items of specified quantities to the provided wallet addresses or wallet addresses associated with the provided walletIds. You may also provide a combination of addresses and walletIds in one request.
@@ -73,9 +73,9 @@ Transfers one or multiple items of specified quantities to the provided wallet a
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 **batch_transfer_collection_items_request** | [**BatchTransferCollectionItemsRequest**](BatchTransferCollectionItemsRequest.md) |  | [required] |
 
 ### Return type
@@ -96,7 +96,7 @@ No authorization required
 
 ## burn_collection_item
 
-> crate::models::TransactionModel burn_collection_item(collection_id, collection_item_id, x_authorization, x_password, burn_collection_item_request)
+> crate::models::TransactionModel burn_collection_item(collection_id, collection_item_id, x_authorization, x_wallet_decrypt_key, burn_collection_item_request)
 Burn collection item
 
 Removes (burns) the provided quantity of the collectionItemId from the authenticating game or players wallet. The quantity is permanently removed from the circulating supply of the item.
@@ -106,10 +106,10 @@ Removes (burns) the provided quantity of the collectionItemId from the authentic
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 **burn_collection_item_request** | [**BurnCollectionItemRequest**](BurnCollectionItemRequest.md) |  | [required] |
 
 ### Return type
@@ -130,7 +130,7 @@ No authorization required
 
 ## create_collection
 
-> crate::models::CreateCollection200Response create_collection(x_authorization, x_password, create_collection_request)
+> crate::models::CreateCollection200Response create_collection(x_authorization, x_wallet_decrypt_key, create_collection_request)
 Create collection
 
 Creates a new game item collection and deploys an extended functionality ERC1155 contract on behalf of the authenticating game's primary wallet. The deployed ERC1155 contract is preconfigured to fully support creating unique item types, item transfer timelocks, custom metadata per item, gasless transactions from player managed wallets, and much more.
@@ -141,7 +141,7 @@ Creates a new game item collection and deploys an extended functionality ERC1155
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **create_collection_request** | [**CreateCollectionRequest**](CreateCollectionRequest.md) |  | [required] |
 
 ### Return type
@@ -162,7 +162,7 @@ No authorization required
 
 ## create_collection_item
 
-> crate::models::TransactionModel create_collection_item(collection_id, x_authorization, x_password, create_collection_item_request)
+> crate::models::TransactionModel create_collection_item(collection_id, x_authorization, x_wallet_decrypt_key, create_collection_item_request)
 Create collection item
 
 Creates a new item type. Item type creation associates all of the relevant item data to a specific itemId. Such as item name, image, description, attributes, any arbitrary data such as 2D or 3D model resolver URLs, and more. It is recommended, but not required, that you create a new item type through this endpoint before minting any quantity of the related itemId.  Any itemId provided will have its existing item type overriden if it already exists.  Item type data is uploaded to, and resolved through IPFS for decentralized persistence.
@@ -172,9 +172,9 @@ Creates a new item type. Item type creation associates all of the relevant item 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **create_collection_item_request** | [**CreateCollectionItemRequest**](CreateCollectionItemRequest.md) |  | [required] |
 
 ### Return type
@@ -205,10 +205,10 @@ Returns a boolean (true/false) representing if the provided operatorAddress has 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **operator_address** | **String** | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. | [required] |
 **address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
-**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab platform. |  |
 
 ### Return type
 
@@ -228,7 +228,7 @@ No authorization required
 
 ## get_collection_item
 
-> serde_json::Value get_collection_item(collection_id, collection_item_id)
+> crate::models::CollectionItem get_collection_item(collection_id, collection_item_id)
 Get collection item
 
 Returns a metadata object for the provided collectionItemId.
@@ -238,12 +238,12 @@ Returns a metadata object for the provided collectionItemId.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+[**crate::models::CollectionItem**](CollectionItem.md)
 
 ### Authorization
 
@@ -269,10 +269,10 @@ Returns the current collection item balance of the provided collectionItemId for
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 **address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
-**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab platform. |  |
 
 ### Return type
 
@@ -302,9 +302,9 @@ Returns the current collection item balances of all collection items for the pro
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
-**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab platform. |  |
 
 ### Return type
 
@@ -334,7 +334,7 @@ Returns the currency circulating supply of all collection items.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 
 ### Return type
 
@@ -364,10 +364,10 @@ Returns the current circulating supply of the provided collectionItemId.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 **address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
-**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab platform. |  |
 
 ### Return type
 
@@ -397,7 +397,7 @@ Returns a timestamp (in seconds) for when the provided collectionItemId's transf
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 
 ### Return type
@@ -418,7 +418,7 @@ No authorization required
 
 ## get_collection_items
 
-> Vec<serde_json::Value> get_collection_items(collection_id)
+> Vec<crate::models::CollectionItem> get_collection_items(collection_id)
 Get collection items
 
 Returns all collection items as an array of metadata objects.
@@ -428,11 +428,11 @@ Returns all collection items as an array of metadata objects.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 
 ### Return type
 
-[**Vec<serde_json::Value>**](serde_json::Value.md)
+[**Vec<crate::models::CollectionItem>**](CollectionItem.md)
 
 ### Authorization
 
@@ -458,10 +458,10 @@ Returns a boolean (true/false) representing if the provided role for this collec
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **role** | **String** | A valid MetaFab role or bytes string representing a role, such as `0xc9eb32e43bf5ecbceacf00b32281dfc5d6d700a0db676ea26ccf938a385ac3b7` | [required] |
 **address** | Option<**String**> | A valid EVM based address. For example, `0x39cb70F972E0EE920088AeF97Dbe5c6251a9c25D`. |  |
-**wallet_id** | Option<**String**> | Any wallet id within the MetaFab ecosystem. |  |
+**wallet_id** | Option<**String**> | Any wallet id within the MetaFab platform. |  |
 
 ### Return type
 
@@ -511,7 +511,7 @@ No authorization required
 
 ## grant_collection_role
 
-> crate::models::TransactionModel grant_collection_role(collection_id, x_authorization, x_password, grant_collection_role_request)
+> crate::models::TransactionModel grant_collection_role(collection_id, x_authorization, x_wallet_decrypt_key, grant_collection_role_request)
 Grant collection role
 
 Grants the provided role for the collection to the provided address or address associated with the provided walletId. Granted roles give different types of authority on behalf of the collection for specific players, addresses, or contracts to perform different types of permissioned collection operations.
@@ -521,9 +521,9 @@ Grants the provided role for the collection to the provided address or address a
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 **grant_collection_role_request** | [**GrantCollectionRoleRequest**](GrantCollectionRoleRequest.md) |  | [required] |
 
 ### Return type
@@ -544,7 +544,7 @@ No authorization required
 
 ## mint_collection_item
 
-> crate::models::TransactionModel mint_collection_item(collection_id, collection_item_id, x_authorization, x_password, mint_collection_item_request)
+> crate::models::TransactionModel mint_collection_item(collection_id, collection_item_id, x_authorization, x_wallet_decrypt_key, mint_collection_item_request)
 Mint collection item
 
 Creates (mints) the specified quantity of the provided collectionItemId to the provided wallet address or wallet address associated with the provided walletId.
@@ -554,10 +554,10 @@ Creates (mints) the specified quantity of the provided collectionItemId to the p
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **mint_collection_item_request** | [**MintCollectionItemRequest**](MintCollectionItemRequest.md) |  | [required] |
 
 ### Return type
@@ -578,7 +578,7 @@ No authorization required
 
 ## revoke_collection_role
 
-> crate::models::TransactionModel revoke_collection_role(collection_id, x_authorization, x_password, revoke_collection_role_request)
+> crate::models::TransactionModel revoke_collection_role(collection_id, x_authorization, x_wallet_decrypt_key, revoke_collection_role_request)
 Revoke collection role
 
 Revokes the provided role for the collection to the provided address or address associated with the provided walletId.
@@ -588,9 +588,9 @@ Revokes the provided role for the collection to the provided address or address 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 **revoke_collection_role_request** | [**RevokeCollectionRoleRequest**](RevokeCollectionRoleRequest.md) |  | [required] |
 
 ### Return type
@@ -611,7 +611,7 @@ No authorization required
 
 ## set_collection_approval
 
-> crate::models::TransactionModel set_collection_approval(collection_id, x_authorization, x_password, set_collection_approval_request)
+> crate::models::TransactionModel set_collection_approval(collection_id, x_authorization, x_wallet_decrypt_key, set_collection_approval_request)
 Set collection approval
 
 Sets approval for the provided address or wallet address associated with the provided walletId to operate on behalf of the authenticating game or player's owned items for this collection. Setting an approved value of `true` allows the provided address or address associated with the provided walletId to transfer and burn items from this collection on behalf of the authenticated game or player's wallet address.
@@ -621,9 +621,9 @@ Sets approval for the provided address or wallet address associated with the pro
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 **set_collection_approval_request** | [**SetCollectionApprovalRequest**](SetCollectionApprovalRequest.md) |  | [required] |
 
 ### Return type
@@ -644,7 +644,7 @@ No authorization required
 
 ## set_collection_item_timelock
 
-> crate::models::TransactionModel set_collection_item_timelock(collection_id, collection_item_id, x_authorization, x_password, set_collection_item_timelock_request)
+> crate::models::TransactionModel set_collection_item_timelock(collection_id, collection_item_id, x_authorization, x_wallet_decrypt_key, set_collection_item_timelock_request)
 Set collection item timelock
 
 Sets the item timelock for the provided collection itemId. The timelock is a unix timestamp (in seconds) that defines a period in time of when an item may be transferred by players. Until the timelock timestamp has passed, the itemId for the given timelock may not be transferred, sold, traded, etc. A timelock of 0 (default) means that there is no timelock set on the itemId and it can be freely transferred, traded, etc.
@@ -654,10 +654,10 @@ Sets the item timelock for the provided collection itemId. The timelock is a uni
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 **x_authorization** | **String** | The `secretKey` of the authenticating game. | [required] |
-**x_password** | **String** | The password of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game. Required to decrypt and perform blockchain transactions with the game primary wallet. | [required] |
 **set_collection_item_timelock_request** | [**SetCollectionItemTimelockRequest**](SetCollectionItemTimelockRequest.md) |  | [required] |
 
 ### Return type
@@ -678,7 +678,7 @@ No authorization required
 
 ## transfer_collection_item
 
-> crate::models::TransactionModel transfer_collection_item(collection_id, collection_item_id, x_authorization, x_password, transfer_collection_item_request)
+> crate::models::TransactionModel transfer_collection_item(collection_id, collection_item_id, x_authorization, x_wallet_decrypt_key, transfer_collection_item_request)
 Transfer collection item
 
 Transfers specified quantity of itemId to the provided wallet address or wallet address associated with the provided walletId.
@@ -688,10 +688,10 @@ Transfers specified quantity of itemId to the provided wallet address or wallet 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**collection_id** | **String** | Any collection id within the MetaFab ecosystem. | [required] |
+**collection_id** | **String** | Any collection id within the MetaFab platform. | [required] |
 **collection_item_id** | **f32** | Any item id for the collection. Zero, or a positive integer. | [required] |
 **x_authorization** | **String** | The `secretKey` of a specific game or the `accessToken` of a specific player. | [required] |
-**x_password** | **String** | The password of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
+**x_wallet_decrypt_key** | **String** | The `walletDecryptKey` of the authenticating game or player. Required to decrypt and perform blockchain transactions with the game or player primary wallet. | [required] |
 **transfer_collection_item_request** | [**TransferCollectionItemRequest**](TransferCollectionItemRequest.md) |  | [required] |
 
 ### Return type

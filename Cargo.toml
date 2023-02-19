@@ -1,7 +1,10 @@
 [package]
 name = "metafab"
-version = "1.4.1"
-authors = ["OpenAPI Generator team and contributors"]
+version = "1.5.1"
+authors = ["metafabproject@gmail.com"]
+description = "Complete MetaFab API references and guides can be found at: https://trymetafab.com"
+# Override this license by providing a License Object in the OpenAPI.
+license = "Unlicense"
 edition = "2018"
 
 [dependencies]
@@ -13,5 +16,3 @@ uuid = { version = "^1.0", features = ["serde"] }
 [dependencies.reqwest]
 version = "^0.11"
 features = ["json", "multipart"]
-
-[dev-dependencies]
